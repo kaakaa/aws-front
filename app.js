@@ -5,6 +5,10 @@ var _ = require('lodash-node'),
 var app = ex();
 AWS.config.region = "ap-northeast-1";
 
+console.log("AWS_ACCESS_KEY_ID: " + process.env.AWS_ACCESS_KEY_ID);
+console.log("AWS_SECRET_ACCESS_KEY: " + process.env.AWS_SECRET_ACCESS_KEY);
+console.log("region: " + AWS.config.region);
+
 app.get('/', function(req, res){
 	var ec2 = new AWS.EC2();
 	var list = [];
