@@ -9,15 +9,15 @@
   ],
   "scripts": {
     "postdeploy": "npm install"
-  }
+  },
   "addons": [],
   "env": {
     "AWS_ACCESS_KEY_ID": {
-      "description": "AWS access key",
+      "description": "AWS access key"
     },
     "AWS_SECRET_ACCESS_KEY": {
       "description": "AWS secret key",
       "generator": "secret"
-    },
+    }
   }
 }
