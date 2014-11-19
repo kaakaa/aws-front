@@ -5,12 +5,13 @@ var _ = require('lodash-node'),
 var app = ex();
 AWS.config.update({
 	"accessKeyId": process.env.AWS_ACCESS_KEY_ID,
-	"secretAccessKey": process.env.AWS_SECRET_ACCESS_KEY
+	"secretAccessKey": process.env.AWS_SECRET_ACCESS_KEY,
+	"region": "ap-northeast-1"
 });
-AWS.config.region = "ap-northeast-1";
 
 console.log("AWS_ACCESS_KEY_ID: " + process.env.AWS_ACCESS_KEY_ID);
-console.log("AWS_SECRET_ACCESS_KEY: " + process.env.AWS_SECRET_ACCESS_KEY);
+console.log("AWS_ACCESS_KEY_ID: " + AWS.config.accessKeyId);
+console.log("AWS_SECRET_ACCESS_KEY: " + AWS.config.secretAccessKey);
 console.log("region: " + AWS.config.region);
 
 app.get('/', function(req, res){
