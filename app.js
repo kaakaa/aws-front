@@ -7,7 +7,7 @@ var app = ex();
 AWS.config.update({
 	"accessKeyId": _s.trim(process.env.AWS_ACCESS_KEY_ID),
 	"secretAccessKey": _s.trim(process.env.AWS_SECRET_ACCESS_KEY),
-	"region": "ap-northeast-1"
+	"region": _s.trim(process.env.AWS_REGION)
 });
 
 console.log("AWS_ACCESS_KEY_ID: " + process.env.AWS_ACCESS_KEY_ID);
