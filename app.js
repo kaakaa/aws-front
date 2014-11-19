@@ -1,7 +1,7 @@
 var _ = require('lodash-node'),
-		_s = require('underscore.string'),
-	 ex = require('express'),
-  AWS = require('aws-sdk');
+    _s = require('underscore.string'),
+    ex = require('express'),
+AWS = require('aws-sdk');
 
 var app = ex();
 AWS.config.update({
