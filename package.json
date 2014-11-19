@@ -1,0 +1,21 @@
+{
+  "name": "ec2-front",
+  "version": "0.0.1",
+  "description": "ec2-front end",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "aws",
+    "ec2"
+  ],
+  "dependencies": {
+    "express": "*",
+    "aws-sdk": ">=2.0.27",
+    "lodash-node": ">=2.4.1"
+  },
+  "author": "kaakaa",
+  "license": "MIT"
+}
