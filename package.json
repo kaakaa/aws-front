@@ -14,6 +14,7 @@
   ],
   "dependencies": {
     "express": "*",
+    "underscore.string": "*",
     "aws-sdk": ">=2.0.27",
     "lodash-node": ">=2.4.1"
   },
