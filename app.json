@@ -13,10 +13,14 @@
   "addons": [],
   "env": {
     "AWS_ACCESS_KEY_ID": {
-      "description": "AWS access key"
+      "description": "Input AWS access key"
     },
     "AWS_SECRET_ACCESS_KEY": {
-      "description": "AWS secret key"
+      "description": "Input AWS secret key"
+    },
+    "AWS_REGION": {
+      "description": "Input AWS region",
+      "value": "ap-northeast-1"
     }
   }
 }
