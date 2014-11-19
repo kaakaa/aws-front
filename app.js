@@ -3,6 +3,10 @@ var _ = require('lodash-node'),
   AWS = require('aws-sdk');
 
 var app = ex();
+AWS.config.update({
+	"accessKeyId": process.env.AWS_ACCESS_KEY_ID,
+	"secretAccessKey": process.env.AWS_SECRET_ACCESS_KEY
+});
 AWS.config.region = "ap-northeast-1";
 
 console.log("AWS_ACCESS_KEY_ID: " + process.env.AWS_ACCESS_KEY_ID);
