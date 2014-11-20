@@ -18,20 +18,16 @@ app.get('/', function(req, res){
 			console.log(err, err.stack);
 			res.send("AWS connection error => " + err);
 		}
-		if(data.Reservations.length == 0){
-			console.log("No Result - " + data);
-			return;
-		}	
-		
-		list = _.map(data.Reservations[0].Instances, function(instance, index, object){
-			var ip = instance.PublicIpAddress;
-			if(ip.length > 0){
-				return ip
-			}
-		});
 
-		if(list.length > 0){
-			var url = "http://" + list[0];
+		var iplist = _.chain(data.Reservations)
+			.map(function(value){ return value.Instances; })
+			.flatten()
+			.map(function(instance, i, obj){ return instance.PublicIpAddress; })
+		  .flatten()
+			.value();
+
+		if(iplist.length > 0){
+			var url = "http://" + iplist[0];
 			console.log("redirect => " + url);
 	  	res.redirect(url);
 		} else {
