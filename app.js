@@ -10,10 +10,29 @@ AWS.config.update({
 	"region": _s.trim(process.env.AWS_REGION)
 });
 
+var getParams = function(tag_string){
+	if(!tag_string || tag_string.length <= 0){ return {} }
+
+	var filters = _.chain(tag_string.split(','))
+		.map(function(e){ return e.split('=')})
+		.filter(function(e){ return e.length == 2 })
+		.map(function(e){
+			var obj = new Object();
+			obj.Name = "tag:" + _s.trim(e[0]);
+			obj.Values = [_s.trim(e[1])];
+			return obj;
+		})
+		.value()
+	filters.push({Name: "instance-state-name", Values: ["running"]});
+	console.log(filters);
+	return {Filters: filters};
+}
+
 app.get('/', function(req, res){
 	var ec2 = new AWS.EC2();
-	var list = [];
-	ec2.describeInstances({}, function (err, data) {
+	var params = getParams(_s.trim(process.env.AWS_FRONT_TAGS));
+	console.log("AWS query params => " + params);
+	ec2.describeInstances(params, function (err, data) {
 		if(err){
 			console.log(err, err.stack);
 			res.send("AWS connection error => " + err);
