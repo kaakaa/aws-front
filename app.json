@@ -23,7 +23,7 @@
       "value": "ap-northeast-1"
     }
     "AWS_FRONT_TAGS (Optional)": {
-      "description": "Filtering by tags of ec2 instance (ex. key=value1,key2=value2)",
+      "description": "Filtering by tags of ec2 instance (ex. key=value1,key2=value2)"
     }
   }
 }
