@@ -41,7 +41,6 @@ app.get('/', function(req, res){
 			.map(function(e){ return e.Instances; })
 			.flatten()
 			.map(function(e){ return e.PublicIpAddress; })
-			.flatten()
 			.value();
 
 		if(iplist.length > 0){
