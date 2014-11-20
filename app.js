@@ -38,9 +38,9 @@ app.get('/', function(req, res){
 		}
 
 		var iplist = _.chain(data.Reservations)
-			.map(function(value){ return value.Instances; })
+			.map(function(e){ return e.Instances; })
 			.flatten()
-			.map(function(instance, i, obj){ return instance.PublicIpAddress; })
+			.map(function(e){ return e.PublicIpAddress; })
 		  .flatten()
 			.value();
 
