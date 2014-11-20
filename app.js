@@ -1,7 +1,7 @@
-var _ = require('lodash-node'),
-    _s = require('underscore.string'),
-    ex = require('express'),
-AWS = require('aws-sdk');
+var _	= require('lodash-node'),
+  _s	= require('underscore.string'),
+  ex	= require('express'),
+  AWS	= require('aws-sdk');
 
 var app = ex();
 AWS.config.update({
@@ -41,13 +41,13 @@ app.get('/', function(req, res){
 			.map(function(e){ return e.Instances; })
 			.flatten()
 			.map(function(e){ return e.PublicIpAddress; })
-		  .flatten()
+			.flatten()
 			.value();
 
 		if(iplist.length > 0){
 			var url = "http://" + iplist[0];
 			console.log("redirect => " + url);
-	  	res.redirect(url);
+			res.redirect(url);
 		} else {
 			res.send("Not Found Instance");
 		}
