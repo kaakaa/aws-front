@@ -11,7 +11,8 @@ AWS.config.update({
 });
 
 var getParams = function(tag_string){
-	if(!tag_string || tag_string.length <= 0){ return {} }
+	var running_filter = {Name: "instance-state-name", Values: ["running"]};
+	if(!tag_string || tag_string.length <= 0){ return {Filters: [running_filter]} }
 
 	var filters = _.chain(tag_string.split(','))
 		.map(function(e){ return e.split('=')})
@@ -23,7 +24,7 @@ var getParams = function(tag_string){
 			return obj;
 		})
 		.value()
-	filters.push({Name: "instance-state-name", Values: ["running"]});
+	filters.push(running_filter);
 	console.log(filters);
 	return {Filters: filters};
 }
