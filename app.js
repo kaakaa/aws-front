@@ -31,7 +31,6 @@ var getParams = function(tag_string){
 app.get('/', function(req, res){
 	var ec2 = new AWS.EC2();
 	var params = getParams(_s.trim(process.env.AWS_FRONT_TAGS));
-	console.log("AWS query params => " + params);
 	ec2.describeInstances(params, function (err, data) {
 		if(err){
 			console.log(err, err.stack);
