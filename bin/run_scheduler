@@ -1,0 +1,29 @@
+#! /app/bin/node
+var http = require('http');
+
+var options = {
+  hostname: process.env.URL,
+  port: '80',
+  path: '/run_scheduler',
+  method: 'POST'
+};
+
+var data = null;
+
+var req = http.request(options, function(res){
+  data = null;
+  res.on('data', function(chunk){
+    data += chunk;
+  });
+	  
+  res.on('end', function(){
+    console.log('get response');
+  });
+});
+
+req.on('error', function(e){
+  console.log('problem with request' + e.message);
+});
+
+req.write('data\n');
+req.end();
