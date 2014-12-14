@@ -22,8 +22,8 @@
       "description": "Input AWS region",
       "value": "us-west-2"
     },
-    "AWS_FRONT_TAGS (Optional)": {
-      "description": "Filtering EC2 instances by tags (ex. tag1=value1,tag2=value2)",
+    "AWS_FRONT_TAGS": {
+      "description": "(Optional) Filtering EC2 instances by tags (ex. tag1=value1,tag2=value2)",
       "required": false
     }
   }
