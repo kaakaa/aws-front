@@ -1,5 +1,4 @@
 var _	= require('lodash-node'),
-	moment_jp = require('moment')().zone("+09:00"),
   _s	= require('underscore.string'),
   ex	= require('express'),
   AWS	= require('aws-sdk');
@@ -54,54 +53,6 @@ app.get('/', function(req, res){
 		} else {
 			res.send("Not Found Instance");
 		}
-	});
-});
-
-app.post('/run_scheduler', function(req, res){
-	var ec2 = new AWS.EC2();
-	var params = getParams(_s.trim(process.env.AWS_FRONT_TAGS));
-	var instances = ec2.describeInstances(params, function (err, data) {
-		if(err){
-			console.log(err, err.stack);
-			res.send("AWS connection error => " + err);
-		}
-
-	  var nowHour = moment_jp.hour();
-		var instances = _.chain(data.Reservations)
-			.map(function(e){ return e.Instances; })
-			.flatten()
-		  .filter(function(instance){
-  			if(nowHour <= 6){
-  				// midnight - early morning
-					if(instance.State["Code"] <= 16){
-						// running
-						return true;
-					}
-  			} else {
-  				// day time
-					if(!(instance.State["Code"] > 16)){
-						// not running
-						return true;
-					}
-  			}
-			})
-	    .pluck("InstanceId")
-			.map(function(instanceIds){
-				var param = { InstanceIds: [].concat(instanceIds) };
-				if(nowHour <= 6){
-					console.log("shutting down: " + instanceIds);
-					ec2.stopInstances(param, function(err, data) {
-					  if (err) console.log(err, err.stack); // an error occurred
-					  else     console.log(data);           // successful response
-					});
-				} else {
-					console.log("run: " + instanceIds);
-					ec2.stopInstances(param, function(err, data) {
-					  if (err) console.log(err, err.stack); // an error occurred
-					  else     console.log(data);           // successful response
-					});
-				}
-			});
 	});
 });
 
